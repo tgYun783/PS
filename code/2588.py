@@ -1,0 +1,6 @@
+first_num = input()
+second_num = input()
+print(int(first_num) * int(second_num[-1]))
+print(int(first_num) * int(second_num[-2]))
+print(int(first_num) * int(second_num[-3]))
+print(int(first_num) * int(second_num))
