@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 vector<bool> prime;
-void erastotenes(int t)
+void eratosthenes(int t)
 {
   prime = vector<bool>(t+1,true);
   prime[0] = false, prime[1] = false;
@@ -18,7 +18,7 @@ void erastotenes(int t)
 
 int solution(int n)
 {
-  erastotenes(n);
+  eratosthenes(n);
   vector<int>V;
   for(int i=2; i<=n; i++)
     if(prime[i])
@@ -30,27 +30,21 @@ int solution(int n)
   int count = 0;
   while(1)
   {
-    if(end == V.size() -1 && sum < n)
-      break;
-    
     if(sum < n)
     {
-      
       end++;
-      if(end >= V.size())
-        break;
+      if(end >= V.size()) break; 
       sum += V[end];
     }
-    
-    if(sum >= n)
+    else 
     {
-      if(sum == n)
-        count++;
+      if(sum == n) count++;
       sum -= V[start];
       start++;
     }
   }
   return count;
+    
 }
 int main()
 {
