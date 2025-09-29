@@ -2,7 +2,6 @@
 using namespace std;
 int l, c;
 vector<char>v;
-vector<bool>is_used;
 vector<char>ans;
 
 void bt(int n, int start)
@@ -38,7 +37,6 @@ int main()
 {
     cin >> l >> c;
     v = vector<char>(c);
-    is_used = vector<bool>(c,false);
     for(int i=0; i<c; i++)
     {
         cin >> v[i];
