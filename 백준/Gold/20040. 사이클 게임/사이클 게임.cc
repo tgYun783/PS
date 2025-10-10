@@ -21,6 +21,9 @@ bool unite(int a, int b)
 }
 int main()
 {
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
     int n, m;
     cin >> n >> m;
     root = vector<int>(n + 1);
@@ -38,6 +41,6 @@ int main()
             cout << i + 1;
             return 0;
         }
-        }
+    }
     cout << 0;
 }
