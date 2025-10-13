@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-vector<int> v;
+vector<bool> v;
 void canto(int t, int point)
 {
     if (t == 1)
@@ -24,7 +24,7 @@ int main()
         int t = 1;
         for (int i = 0; i < n; i++)
             t *= 3;
-        v = vector<int>(t);
+        v = vector<bool>(t, 0);
         canto(t, 0);
         for (int i = 0; i < t; i++)
         {
