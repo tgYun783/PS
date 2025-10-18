@@ -2,8 +2,8 @@
 using namespace std;
 const string END = "123456780";
 int cnt = -1;
-constexpr int drow[4] = {-1, 0, 1, 0};
-constexpr int dcol[4] = {0, 1, 0, -1};
+constexpr int DROW[4] = {-1, 0, 1, 0};
+constexpr int DCOL[4] = {0, 1, 0, -1};
 unordered_set<string> visited;
 
 int main() {
@@ -36,8 +36,8 @@ int main() {
         int col = zero_index % 3;
 
         for (int i = 0; i < 4; i++) {
-            int nrow = drow[i] + row;
-            int ncol = dcol[i] + col;
+            int nrow = DROW[i] + row;
+            int ncol = DCOL[i] + col;
 
             if (nrow >= 0 && nrow < 3 && ncol >= 0 && ncol < 3) {
                 string next_s = current_s;
