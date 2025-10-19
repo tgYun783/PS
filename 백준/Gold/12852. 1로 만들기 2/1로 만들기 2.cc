@@ -1,49 +1,42 @@
 #include <bits/stdc++.h>
 using namespace std;
-int main() {
 
+int main() {
     int n;
     cin >> n;
-    vector<pair<int,string>> v(n+1);
-    v[1] = {0,"1"};
+    vector<int> v(1e6 + 1);
+    vector<int> prev(1e6 + 1);
 
-    for (int i = 2; i <= n; i += 1) {
-        int count;
-        string s;
-        if (i % 2 == 0 && i % 3 == 0) {
-            count = min({v[i-1].first, v[i/2].first, v[i/3].first});
-
-            if (count == v[i/3].first) {
-                s = v[i/3].second;
-            }
-            else if (count == v[i/2].first) {
-                s = v[i/2].second;
-            }
-            else {
-                s = v[i-1].second;
-            }
+    for (int i=2; i<=n; i++) {
+        if (i%2 ==0 && i%3 ==0) {
+            v[i] = min(v[i/2], min(v[i/3], v[i-1]));
+            if (v[i] == v[i/2])
+                prev[i] = i/2;
+            else if (v[i] == v[i/3])
+                prev[i] = i/3;
+            else
+                prev[i] = i-1;
         }
-        else if (i % 2 == 0) {
-            count = min(v[i-1].first, v[i/2].first);
-            s = (v[i-1].first < v[i/2].first) ? v[i-1].second : v[i/2].second;
+        else if (i%2 ==0) {
+            v[i] = min(v[i/2], v[i-1]);
+            prev[i] = (v[i/2] < v[i-1]) ? i/2 : i-1;
         }
-
-        else if (i % 3 == 0) {
-            count = min(v[i-1].first, v[i/3].first);
-            s = (v[i-1].first < v[i/3].first) ? v[i-1].second : v[i/3].second;
+        else if (i%3 ==0) {
+            v[i] = min(v[i/3], v[i-1]);
+            prev[i] = (v[i/3] < v[i-1]) ? i/3 : i-1;
         }
         else {
-            count = v[i-1].first;
-            s = v[i-1].second;
+            v[i] = v[i-1];
+            prev[i] = i-1;
         }
-        v[i].first = count+1;
-        s = to_string(i) + " " + s;
-        v[i].second = s;
-
+        v[i]++;
     }
-    cout << v[n].first << '\n';
-    cout << v[n].second << '\n';
 
-
+    cout << v[n] << '\n';
+    int ans = n;
+    while (ans != 0) {
+        cout << ans << ' ';
+        ans = prev[ans];
+    }
 
 }
