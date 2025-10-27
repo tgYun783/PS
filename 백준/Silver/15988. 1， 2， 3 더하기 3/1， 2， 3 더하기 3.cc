@@ -8,16 +8,16 @@ int main() {
 
     int t;
     cin >> t;
+    vector<int> v(1000001);
+    v[1] = 1;
+    v[2] = 2;
+    v[3] = 4;
+    for( int i = 4; i <= 1000000; ++i ) {
+        v[i] = ((v[i-1] + v[i-2])%mod + v[i-3])%mod;;
+    }
     for ( int i = 0; i < t; ++i ) {
         int n;
         cin >> n;
-        vector<int> v(1000001);
-        v[1] = 1;
-        v[2] = 2;
-        v[3] = 4;
-        for( int i = 4; i <= n; ++i ) {
-            v[i] = ((v[i-1] + v[i-2])%mod + v[i-3])%mod;;
-        }
         cout << v[n] << '\n';
     }
 }
