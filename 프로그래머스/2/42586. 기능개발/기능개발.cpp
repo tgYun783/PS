@@ -1,22 +1,24 @@
-#include <string>
-#include <vector>
+#include <bits/stdc++.h>
 
 using namespace std;
 
 vector<int> solution(vector<int> progresses, vector<int> speeds) {
     vector<int> answer;
-    int tos = 0;
-    int day = 0;
-    while(tos < progresses.size()) {
-        while(progresses[tos] + day * speeds[tos] < 100)
-            day++;
-        int cnt = 1;
-        tos++;
-        while(tos < progresses.size() && progresses[tos] + day * speeds[tos] >= 100) {
-            cnt++;
-            tos++;
+    
+   
+    int max_day = 0;
+    int cnt = 0;
+    for(int i=0; i< progresses.size(); i++) {
+        int day = (99 - progresses[i]) / speeds[i] + 1;
+        
+        if(day > max_day) {
+            answer.push_back(1);
+            max_day = day;
         }
-        answer.push_back(cnt);
+        else {
+            answer.back()++;
+        }
+        
     }
-    return answer;
+     return answer;
 }
