@@ -2,17 +2,18 @@
 using namespace std;
 
 int solution(int bridge_length, int weight, vector<int> truck_weights) {
-    queue<pair<int,int>> q; // {weight, entry_time}
+    queue<pair<int,int>> q; // [weight, entry_time]
     int cur_weight = 0;
     int time = 0;
     int tos = 0; 
 
     while(tos < truck_weights.size()) { 
         time++; 
+        auto [t_weight, entry_time] = q.front();
 
 
-        if (!q.empty() && time - q.front().second == bridge_length) {
-            cur_weight -= q.front().first;
+        if (!q.empty() && time - entry_time == bridge_length) {
+            cur_weight -= t_weight;
             q.pop();
         }
 
