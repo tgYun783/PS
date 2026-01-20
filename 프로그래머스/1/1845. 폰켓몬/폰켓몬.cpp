@@ -3,14 +3,11 @@ using namespace std;
 
 int solution(vector<int> nums)
 {
-    unordered_map<int,int> um;
+    unordered_set<int> us(nums.begin(),nums.end());
     int len = nums.size();
-    for(auto n : nums) {
-        um[n]++;
-    }
-    
     int answer = 0;
-    answer = min(len/2,(int)um.size());
+    
+    answer = min(len/2,(int)us.size());
     
     return answer;
 }
